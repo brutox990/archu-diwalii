@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Archu ke liye ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0618;--gold:#ffc857;--text:#fdf3e2;--card:rgba(255,255,255,.08);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}html{color-scheme:dark}
+body{background:radial-gradient(ellipse at 50% 0%,#3a1048 0%,var(--bg) 65%);color:var(--text);font-family:Poppins,system-ui,sans-serif;overflow:hidden}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+h1,h2{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1.2}
+.gold{background:linear-gradient(90deg,#ffe29a,#ff9d5c,#ff6fa0,#ffe29a);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:300% 0}}
+.step{position:fixed;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:safe center;gap:18px;padding:56px 22px 40px;text-align:center;overflow-y:auto;opacity:0;visibility:hidden;transform:scale(.96) translateY(20px);transition:opacity .9s,transform .9s,visibility .9s}
+.step.on{opacity:1;visibility:visible;transform:none}
+.step>*{max-width:520px;width:100%}
+h1{font-size:clamp(2.1rem,9vw,3.6rem)}h2{font-size:clamp(1.6rem,7vw,2.5rem)}
+p{line-height:1.8;font-weight:300;opacity:.93}
+.dots{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:0;right:0;z-index:5;display:flex;gap:5px;justify-content:center;padding:0 14px}
+.dots i{flex:1 1 0;max-width:18px;height:4px;border-radius:4px;background:rgba(255,255,255,.2);transition:.5s}
+.dots i.d{background:var(--gold)}
+.btn{padding:15px 34px;border:0;border-radius:40px;font:500 1rem Poppins,sans-serif;color:#2a0f00;background:linear-gradient(90deg,#ffd36b,#ff8a3d,#ff6fa0);cursor:pointer;box-shadow:0 8px 30px rgba(255,122,47,.4);width:auto!important;transition:transform .2s,opacity .5s}
+.btn:active{transform:scale(.95)}
+.hide{opacity:0;pointer-events:none}
+.diya{height:40px;background:linear-gradient(#e8742b,#a8420f);border-radius:0 0 84px 84px;position:relative;margin:50px auto 0;box-shadow:0 0 50px 8px rgba(255,150,40,.3);width:84px!important;transition:.6s}
+.diya::before{content:"";position:absolute;left:50%;top:-6px;width:14px;height:8px;background:#5a2a10;border-radius:50%;transform:translateX(-50%)}
+.flame{position:absolute;left:50%;bottom:100%;width:20px;height:42px;margin-left:-10px;background:radial-gradient(ellipse at 50% 75%,#fff6c0 0,#ffc34a 40%,#ff6a00 75%,transparent 80%);border-radius:50% 50% 50% 50%/65% 65% 35% 35%;transform-origin:50% 100%;animation:flick .18s infinite alternate;transition:.5s}
+@keyframes flick{from{transform:scale(1) rotate(-2deg)}to{transform:scale(.9,1.08) rotate(2deg)}}
+.row .diya{cursor:pointer;margin:50px 5px 0;width:54px!important;height:27px;filter:grayscale(.9) brightness(.5)}
+.row .diya.lit{filter:none;box-shadow:0 0 50px 12px rgba(255,150,40,.55)}
+.row .flame{width:14px;height:30px;margin-left:-7px;opacity:0}.row .lit .flame{opacity:1}
+.row{display:flex;justify-content:center}
+.pulse{color:var(--gold);letter-spacing:.14em;font-size:.9rem;animation:pl 1.8s infinite}
+@keyframes pl{50%{opacity:.3}}
+.letter{background:var(--card);border:1px solid rgba(255,200,87,.25);border-radius:22px;padding:24px;text-align:left;backdrop-filter:blur(8px);box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.letter p+p{margin-top:12px}.letter b{color:var(--gold);font-weight:500}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fc{height:140px;perspective:600px;cursor:pointer;position:relative}
+.fc div{position:absolute;inset:0;border-radius:18px;display:flex;align-items:center;justify-content:center;padding:12px;font-size:.82rem;line-height:1.5;backface-visibility:hidden;transition:transform .7s;border:1px solid rgba(255,200,87,.3)}
+.fc .f{background:linear-gradient(135deg,#3b1250,#6a1f5a);font-size:1.5rem;font-family:'Playfair Display',serif}
+.fc .b{background:linear-gradient(135deg,#ffb347,#ff6fa0);color:#2a0f00;font-weight:500;transform:rotateY(180deg)}
+.fc.o .f{transform:rotateY(180deg)}.fc.o .b{transform:none}
+.bar{height:26px;border-radius:20px;background:rgba(255,255,255,.12);overflow:hidden;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#ff7a5c,#ffd36b,#4cd98a);border-radius:20px;transition:width 3.2s cubic-bezier(.2,.8,.2,1)}
+.tag{display:inline-block;padding:8px 18px;border-radius:30px;background:#4cd98a;color:#06301a;font-weight:500;opacity:0;transform:scale(.6);transition:.6s 3s}
+.tag.in{opacity:1;transform:none}
+input[type=range]{width:100%;accent-color:#ff6fa0;height:30px}
+.zone{position:relative;height:130px;display:flex;gap:16px;align-items:center;justify-content:center}
+#no{background:rgba(255,255,255,.12);color:#fff;box-shadow:none}
+.pr{opacity:0;transform:translateY(14px);transition:.8s}.pr.in{opacity:1;transform:none}
+.big{font-size:3rem;animation:hb 1.2s infinite}@keyframes hb{50%{transform:scale(1.2)}}
+.sig{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.3rem}
+body::before{content:"";position:fixed;inset:0;z-index:0;background-image:radial-gradient(1.5px 1.5px at 20% 30%,#fff,transparent),radial-gradient(1px 1px at 70% 20%,#fff,transparent),radial-gradient(1.5px 1.5px at 40% 70%,#ffd9a0,transparent),radial-gradient(1px 1px at 85% 60%,#fff,transparent),radial-gradient(1px 1px at 10% 85%,#fff,transparent),radial-gradient(1.5px 1.5px at 60% 90%,#fff,transparent),radial-gradient(1px 1px at 33% 12%,#fff,transparent),radial-gradient(1.5px 1.5px at 92% 88%,#ffd9a0,transparent);animation:tw 3.5s infinite alternate}
+@keyframes tw{from{opacity:.25}to{opacity:1}}
+#mand{position:fixed;left:50%;top:50%;width:150vmax;height:150vmax;margin:-75vmax 0 0 -75vmax;z-index:0;opacity:.14;animation:spin 140s linear infinite;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+#toran{position:fixed;top:calc(26px + env(safe-area-inset-top,0px));left:0;right:0;z-index:4;pointer-events:none;display:flex;justify-content:space-around;align-items:flex-start}
+#toran::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:#c98a2b}
+.hg{display:flex;flex-direction:column;align-items:center;transform-origin:50% 0;animation:sw 3s ease-in-out infinite alternate}
+@keyframes sw{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+.hg i{width:1px;background:#c98a2b}.hg b{width:14px;height:14px;border-radius:50%;box-shadow:0 0 14px #ffa500,inset 0 0 4px #fff7}
+.step{padding-top:98px;filter:blur(10px);transform:scale(.92) translateY(30px);transition:opacity .9s,transform .9s,visibility .9s,filter .9s}
+.step.on{filter:none;transform:none}
+h1{filter:drop-shadow(0 0 18px rgba(255,150,80,.4))}
+.btn{animation:bg 2.4s infinite}@keyframes bg{50%{box-shadow:0 8px 42px rgba(255,111,160,.75)}}
+.letter{border:1px solid transparent;background:linear-gradient(rgba(28,10,44,.78),rgba(28,10,44,.78)) padding-box,linear-gradient(135deg,#ffd36b,#ff6fa0,#8a5cff) border-box}
+.bb{background:#3d1b57;border-radius:18px 18px 18px 4px;padding:12px 16px;width:fit-content;max-width:92%;opacity:0;transform:translateY(12px) scale(.9);transition:.7s}
+.bb.in{opacity:1;transform:none}
+.th{opacity:0;transform:translateY(14px);transition:.8s}.th.in{opacity:1;transform:none}
+.moon{width:150px!important;height:150px;border-radius:50%;margin:10px auto;cursor:pointer;position:relative;background:radial-gradient(circle at 35% 35%,#fffbe8,#f5e3a8 55%,#c9ae6a);box-shadow:0 0 60px 20px rgba(255,235,170,.35),inset -14px -10px 26px rgba(120,90,30,.35);animation:fl 4s ease-in-out infinite alternate}
+.moon::before{content:"";position:absolute;width:26px;height:26px;border-radius:50%;background:rgba(150,115,50,.25);top:34px;left:90px;box-shadow:-48px 52px 0 6px rgba(150,115,50,.2),-12px 70px 0 -6px rgba(150,115,50,.2)}
+@keyframes fl{to{transform:translateY(-12px)}}
+.dr{opacity:0;transform:translateX(-20px);transition:.8s}.dr.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="dots" id="dots"></div>
+
+<div class="step on" id="s0" onclick="if(!window.op){op=1;go(1)}" style="cursor:pointer">
+  <div class="diya"><div class="flame"></div></div>
+  <h1 class="gold" style="margin-top:34px">Sirf Archu ke liye 🔒</h1>
+  <p>Ye poori duniya bas ek insaan ke liye bani hai.</p>
+  <div class="pulse">TAP KARO, WIFEY 🪔</div>
+</div>
+
+<div class="step" id="s1">
+  <h1 class="gold">Hey Archu ❤️</h1>
+  <p id="tw" style="min-height:170px;font-size:1.1rem"></p>
+  <button class="btn hide" id="b1" onclick="go(2)">Aage chalo →</button>
+</div>
+
+<div class="step" id="s2">
+  <h2 class="gold">Chhoti chhoti cheezein 🫶</h2>
+  <div class="letter">
+    <p>Maine tumse kaha tha na, ki tumhari ye <b>chhoti chhoti cheezein</b> mujhe le dubengi? 😄</p>
+    <p>Ye jo beech beech mein tum bolti rehti ho <b>"Chai Patti"</b>, <b>"Janab"</b>, aur meri mummy ko <b>"Sasu Maa"</b> bhi bol diya... aur bhi na jaane kitni pyaari baatein. 😄</p>
+    <p>Sach bataun? Ye sab sunke mujhe <b>bohot, bohot achha</b> lagta hai, really. Yahi chhoti chhoti baatein meri poori duniya bana deti hain ❤️</p>
+  </div>
+  <button class="btn" onclick="go(3)">Aage →</button>
+</div>
+
+<div class="step" id="s3">
+  <h2 class="gold">Tumhare saare naam 💌</h2>
+  <p>Har card tap karo (<span id="c3">0</span>/4)</p>
+  <div class="grid" id="g3"></div>
+  <button class="btn hide" id="b3" onclick="go(4)">Aage →</button>
+</div>
+
+<div class="step" id="s4">
+  <h2 class="gold">Mera sukoon 🌙</h2>
+  <div class="letter">
+    <p class="bb">Tumhare saath mujhe wo <b>peace aur relaxation</b> milta hai, jo mai shabdon mein kabhi bata hi nahi paunga.</p>
+    <p class="bb">Duniya ka shor, tension, thakaan, sab tumhare paas aake <b>shaant</b> ho jata hai. Dil ko itna achha lagta hai ki bata nahi sakta.</p>
+    <p class="bb">Meri Archu, tum sirf mera pyaar nahi, mera <b>ghar</b> ho. 🏡</p>
+  </div>
+  <button class="btn" onclick="go(5)">Aage →</button>
+</div>
+
+<div class="step" id="s5">
+  <h2 class="gold">Kyun tum itni khaas ho 💖</h2>
+  <p>Har card tap karo (<span id="c5">0</span>/6)</p>
+  <div class="grid" id="g5"></div>
+  <button class="btn hide" id="b5" onclick="go(6)">Aage →</button>
+</div>
+
+<div class="step" id="s6">
+  <div class="big">🎉</div>
+  <h2 class="gold">Healthy Archu!</h2>
+  <div class="bar"><i id="fill"></i></div>
+  <div><span class="tag" id="tag">BMI: Healthy ✅</span></div>
+  <div class="letter">
+    <p>Archu, ye khabar mere liye <b>Diwali ke best gift</b> jaisi hai! Tum ab bilkul theek ho aur tumhara BMI bhi <b>healthy range</b> mein aa gaya hai. 🥳</p>
+    <p>Ye tumhari mehnat, discipline aur himmat ka nateeja hai. Mujhe tum par <b>bohot garv</b> hai, aur chahta hoon tum hamesha apna aise hi khayal rakhti raho. Health sabse badi dolat hai.</p>
+    <p>Healthy Archu = Happy Wifey = Happy Chai Patti ☕😄</p>
+  </div>
+  <button class="btn hide" id="b6" onclick="go(7)">Aage →</button>
+</div>
+
+<div class="step" id="s7">
+  <h2 class="gold">Diye jalao, wifey 🪔</h2>
+  <p id="p7">Har diya ek wish hai. Saare 5 jalao.</p>
+  <div class="row" id="lamps"></div>
+  <button class="btn hide" id="b7" onclick="go(8)">Aage →</button>
+</div>
+
+<div class="step" id="s8">
+  <h2 class="gold">Pyaar-meter 💘</h2>
+  <p>Batao Archu, tum mujhse kitna pyaar karti ho? Slider kheencho!</p>
+  <div class="big" id="pv">0%</div>
+  <input type="range" id="rg" min="0" max="100" value="0">
+  <p id="pm" style="min-height:56px;color:var(--gold)">Chalo shuru karo...</p>
+  <button class="btn hide" id="b8" onclick="go(9)">Aage →</button>
+</div>
+
+<div class="step" id="s9">
+  <div class="big">💍</div>
+  <h2 class="gold">Archu, ek sawal...</h2>
+  <p id="q9" style="font-size:1.15rem">Kya tum hamesha meri wifey banke rahogi?</p>
+  <div class="zone"><button class="btn" id="yes" onclick="yes()">Haan! ❤️</button><button class="btn" id="no">Nahi</button></div>
+</div>
+
+<div class="step" id="s10">
+  <h2 class="gold">Mere waade 🤞</h2>
+  <div class="letter">
+    <p class="pr">🌙 Mai tumhe <b>kabhi nahi chhodunga</b>, chahe situation kaisi bhi ho, chahe kitni bhi badi pareshani aa jaye.</p>
+    <p class="pr">💍 <b>Hamesha tumhara rahunga.</b> Koi bhi hamare beech kabhi nahi aayega, kabhi nahi.</p>
+    <p class="pr">🤝 Har khushi aur har mushkil mein tumhare saath khada rahunga, tumhara haath kabhi nahi chhodunga.</p>
+    <p class="pr">🫂 Jab bhi tum thak jaogi, mai tumhara <b>sukoon</b> banunga, tumhara ghar banunga.</p>
+    <p class="pr">🗝️ Tumhare <b>bharose</b> ko kabhi nahi todunga. Tumne mujh par jo vishwas kiya hai, wo meri sabse badi dolat hai.</p>
+    <p class="pr">☕ Tumhara Chai Patti hamesha tumhare liye haazir rahega, subah ho ya raat.</p>
+    <p class="pr">👵 Sasu Maa ka hamesha khayal rakhunga, aur tumhari tarah unhe bhi izzat aur pyaar dunga. 😄</p>
+    <p class="pr">🌱 Roz thoda <b>behtar insaan</b> banunga, taaki tum mujh par hamesha garv kar sako.</p>
+    <p class="pr">💛 Tumhe roz yaad dilaunga ki tum kitni khaas aur kitni pyaari ho.</p>
+    <p class="pr">🪔 Tumhari muskurahat ki wajah banunga, kabhi tumhare aansuon ki nahi.</p>
+  </div>
+  <button class="btn hide" id="b10" onclick="go(11)">Ek aur baat… 🥺</button>
+</div>
+
+<div class="step" id="sA">
+  <div class="big">🥺</div>
+  <h2 class="gold">Ek chhota sa sorry 🙏</h2>
+  <div class="letter">
+    <p>Archu, jaane-anjaane mujhse jo bhi galtiyan hui hain, kabhi gussa, kabhi laparwahi, kabhi tumhe hurt kar diya, un sabke liye <b>dil se sorry</b>.</p>
+    <p>Aur khaaskar <b>kal raat</b>, mujhse thoda <b>zyada ho gaya tha</b>, jo mujhe khud bhi achha nahi laga. Uske liye dil se maafi, meri pyaari <b>Wifi</b>, maaf kar dena. Ab se aisa kuchh <b>kabhi nahi hoga</b>, ye mera waada hai.</p>
+    <p>Waise bhi, maine <b>tum par bharosa</b> kiya hai na, duniya par nahi. Us bharose ko mai kabhi nahi todunga. 🫶</p>
+    <p>Mai perfect nahi hoon, par tumhare liye <b>roz behtar</b> banne ki koshish karta hoon.</p>
+    <p>Aaj Diwali par bas ek wish: purani saari baatein bhulke, hum nayi roshni ke saath <b>naye sire se</b> shuru karein. 🪔</p>
+  </div>
+  <button class="btn" id="bA" onclick="sorry()">Maaf kar do na, wifey? 🥺</button>
+  <p class="th" id="thx" style="color:var(--gold)">Thank you meri Archu 🥹 Tumne mera dil halka kar diya. Promise, aage se aur achha banunga ❤️</p>
+  <button class="btn hide" id="bA2" onclick="go(12)">Aage chalo →</button>
+</div>
+
+<div class="step" id="sM">
+  <h2 class="gold">Tumhara chand 🌙</h2>
+  <div class="moon" id="moon"></div>
+  <p id="mm" style="min-height:130px;color:var(--gold);font-size:1.05rem">Chand ko tap karo, Archu 🌙</p>
+  <button class="btn hide" id="bM" onclick="go(13)">Aage →</button>
+</div>
+
+<div class="step" id="sC">
+  <h2 class="gold">Tumhare liye kuch aur 💞</h2>
+  <p>Har card tap karo (<span id="cC">0</span>/8)</p>
+  <div class="grid" id="gC"></div>
+  <button class="btn hide" id="bC" onclick="go(14)">Aage →</button>
+</div>
+
+<div class="step" id="sW">
+  <div class="big">🫙</div>
+  <h2 class="gold">Wish jar ✨</h2>
+  <p>Har wish tumhare liye. Nikalo! (<span id="cW">0</span>/6)</p>
+  <p id="wj" style="min-height:110px;font-family:'Playfair Display',serif;font-style:italic;font-size:1.25rem;color:var(--gold)">...</p>
+  <button class="btn" onclick="jar()">Wish nikalo ✨</button>
+  <button class="btn hide" id="bW" onclick="go(15)">Aage →</button>
+</div>
+
+<div class="step" id="sD">
+  <h2 class="gold">Aur diye jalao 🪔</h2>
+  <p id="pD">7 aur diye, 7 aur duaen. Sab jalao, Bauni!</p>
+  <div class="row" id="lamps2" style="flex-wrap:wrap;max-width:300px"></div>
+  <button class="btn hide" id="bD" onclick="go(16)">Aage →</button>
+</div>
+
+<div class="step" id="sR">
+  <h2 class="gold">Hamare sapne ✨</h2>
+  <div class="letter">
+    <p class="dr">🏡 Ek chhota sa pyaara ghar, jahan har shaam hum saath chai peeyein.</p>
+    <p class="dr">🌙 Chand ke neeche raat bhar tumse dher saari baatein karna.</p>
+    <p class="dr">✈️ Bahut saari trips, aur bahut saari khoobsurat yaadein.</p>
+    <p class="dr">👵 Sasu Maa ki khushi mein hamari khushi.</p>
+    <p class="dr">💞 Aur ek poori zindagi, jisme tum hamesha mere saath rahi ho.</p>
+  </div>
+  <button class="btn hide" id="bR" onclick="go(17)">Last surprise 🎆</button>
+</div>
+
+<div class="step" id="s11">
+  <div class="big">🪔❤️🪔</div>
+  <h1 class="gold">Happy Diwali, Wifey!</h1>
+  <p style="font-size:1.05rem">Meri Archu, meri Bauni, meri Wifi, ye Diwali tumhare liye sirf roshni nahi, saari khushiyan, saara sukoon aur mera poora pyaar leke aaye. Tumhare saare sapne poore hon, tum hamesha healthy aur khush raho, aur hum hamesha, har janam, saath rahein. Tum meri zindagi ki sabse sundar roshni ho, mere chand se bhi zyada pyaari. 🌙✨</p>
+  <p class="sig">I love you, Archu ❤️<br>Hamesha tumhara, Chai Patti ☕<br><span style="font-size:.95rem;opacity:.8">(Aapka Janab 😎)</span></p>
+  <button class="btn" onclick="show()">Phir se aatishbaazi 🎆</button>
+</div>
+
+<script>
+const q=s=>document.querySelector(s),N=18;let cur=0;const S=document.querySelectorAll('.step');
+q('#dots').innerHTML='<i></i>'.repeat(N);
+function go(n){S[cur].classList.remove('on');cur=n;S[n].classList.add('on');S[n].scrollTop=0;
+ document.querySelectorAll('.dots i').forEach((d,i)=>d.classList.toggle('d',i<=n));
+ if(n==1)type();if(n==4)chat();navigator.vibrate&&navigator.vibrate(25);if(n==6)health();if(n==10)prom();if(n==16)dream();if(n==17)show();else if(n>0)burst()}
+function burst(){for(let i=0;i<3;i++)setTimeout(()=>boom(Math.random()*W,Math.random()*H*.5+50),i*200)}
+function type(){const t="Aaj Diwali hai. Poore sheher mein diye jal rahe hain, mithai baant rahi hai... par meri nazar sirf ek hi roshni dhoondh rahi hai, aur wo tum ho. Isliye maine ye chhoti si duniya sirf tumhare liye banayi hai. Aaram se, ek ek step khol ke dekhna, har jagah tumhare liye kuch chhupa hai. ✨";let i=0;const e=q('#tw');e.textContent='';const iv=setInterval(()=>{e.textContent=t.slice(0,++i);if(i>=t.length){clearInterval(iv);q('#b1').classList.remove('hide')}},34)}
+function cards(g,items,fr,cnt,btn){let o=0;items.forEach((it,i)=>{const d=document.createElement('div');d.className='fc';d.innerHTML='<div class="f">'+(fr?it[0]:'❤️')+'</div><div class="b">'+(fr?it[1]:it)+'</div>';d.onclick=()=>{if(d.classList.contains('o'))return;d.classList.add('o');q(cnt).textContent=++o;if(o==items.length)q(btn).classList.remove('hide')};q(g).appendChild(d)})}
+cards('#g3',[["Wifey","Meri zindagi ki sabse pyaari wifey 💍"],["Archu","Mere dil ka sabse pyaara naam ❤️"],["Bauni","Meri cute si, pyaari si Bauni 🥰"],["Wifi","Tumhare bina connection hi nahi lagta, tum ho to full signal 📶"]],1,'#c3','#b3');
+cards('#g5',["Tumhari hansi meri har pareshani bhula deti hai 😊","Tum mujhe jaisa hoon waisa apnati ho 🫶","Tumhara 'Chai Patti' bolna sabse pyaara lagta hai ☕","Tumhare saath waqt ka pata hi nahi chalta ⏳","Tum meri sabse achhi dost aur meri duniya ho 🌍","Bas tum ho, isliye sab kuch perfect lagta hai ❤️"],0,'#c5','#b5');
+function health(){q('#fill').style.width='0';q('#tag').classList.remove('in');setTimeout(()=>{q('#fill').style.width='100%';q('#tag').classList.add('in');setTimeout(burst,3300)},300);setTimeout(()=>q('#b6').classList.remove('hide'),5000)}
+const ws=["Tumhari har subah khushiyon wali ho 🌅","Tumhare saare sapne poore ho 💫","Tumhe duniya ka sabse zyada pyaar mile 💖","Tum hamesha aise hi muskurati raho 😊","Aur tum hamesha mere saath raho 🤍"];let lc=0;
+ws.forEach(w=>{const d=document.createElement('div');d.className='diya';d.innerHTML='<div class="flame"></div>';d.onclick=()=>{if(d.classList.contains('lit'))return;d.classList.add('lit');q('#p7').textContent=w;const r=d.getBoundingClientRect();boom(r.left+27,r.top);if(++lc==5)setTimeout(()=>{q('#p7').textContent='Saare diye tumhare naam, meri Archu ❤️';q('#b7').classList.remove('hide');burst()},1400)};q('#lamps').appendChild(d)});
+const pm=[[0,"Chalo shuru karo..."],[20,"Bas itna? Mera to is se zyada hai 😏"],[50,"Aadha? Janab ko manzoor nahi 😄"],[80,"Haan ab sahi hai, thoda aur!"],[100,"Mera pyaar to iske bhi paar hai, ♾️ Wifey!"]];
+q('#rg').oninput=e=>{const v=+e.target.value;q('#pv').textContent=v>=100?'♾️':v+'%';let m=pm[0][1];pm.forEach(p=>{if(v>=p[0])m=p[1]});q('#pm').textContent=m;if(v>=100){q('#b8').classList.remove('hide');burst()}};
+let ys=1;const no=q('#no');
+function run(e){e&&e.preventDefault();ys+=.15;q('#yes').style.transform='scale('+Math.min(ys,2.2)+')';no.style.position='fixed';no.style.left=Math.random()*(innerWidth-110)+'px';no.style.top=Math.random()*(innerHeight-60)+'px';const m=["Pakdo to sahi 😜","Ye option nahi chalega!","Bauni, dobara socho 🥺","Click karne ki himmat? 😏"];q('#q9').textContent=m[Math.floor(Math.random()*m.length)]}
+no.addEventListener('pointerdown',run);no.addEventListener('mouseenter',run);
+function yes(){no.style.display='none';q('#q9').textContent='Yaaay! Pata tha mujhe 🥰 Tum meri ho, hamesha.';burst();setTimeout(()=>go(10),2200)}
+function prom(){document.querySelectorAll('.pr').forEach((p,i)=>setTimeout(()=>p.classList.add('in'),i*1100+400));setTimeout(()=>q('#b10').classList.remove('hide'),11500)}
+const cv=q('#c'),x=cv.getContext('2d');let W,H;
+function rz(){W=cv.width=innerWidth;H=cv.height=innerHeight}rz();addEventListener('resize',rz);
+const em=Array.from({length:45},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2+.6,v:Math.random()*.6+.2,p:Math.random()*6}));
+const hs=Array.from({length:12},()=>({x:Math.random()*W,y:Math.random()*H,s:Math.random()*14+10,v:Math.random()*.5+.3,p:Math.random()*6}));
+let fw=[];
+function boom(px,py){const h=Math.random()*70+10;for(let i=0;i<70;i++){const a=Math.random()*6.283,s=Math.random()*5+1;fw.push({x:px,y:py,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1,h})}}
+function show(){for(let i=0;i<10;i++)setTimeout(()=>boom(Math.random()*W,Math.random()*H*.6+40),i*350)}
+function loop(t){x.clearRect(0,0,W,H);
+ for(const e of em){e.y-=e.v;e.x+=Math.sin(t/900+e.p)*.4;if(e.y<-5){e.y=H+5;e.x=Math.random()*W}x.beginPath();x.arc(e.x,e.y,e.r,0,6.283);x.fillStyle=`rgba(255,${170+e.r*30|0},80,${.4+Math.sin(t/400+e.p)*.3})`;x.fill()}
+ x.globalAlpha=.35;for(const h of hs){h.y-=h.v;h.x+=Math.sin(t/1200+h.p)*.5;if(h.y<-30){h.y=H+30;h.x=Math.random()*W}x.font=h.s+'px serif';x.fillText('❤',h.x,h.y)}x.globalAlpha=1;
+ fw=fw.filter(p=>p.l>0);for(const p of fw){p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.vx*=.98;p.l-=.013;x.beginPath();x.arc(p.x,p.y,2.2,0,6.283);x.fillStyle=`hsla(${p.h*5},100%,65%,${p.l})`;x.fill()}
+ requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+addEventListener('pointerdown',e=>{if(!e.target.closest('button,.fc,.diya,input'))boom(e.clientX,e.clientY)});
+function sorry(){q('#bA').style.display='none';q('#thx').classList.add('in');for(let i=0;i<6;i++)setTimeout(()=>boom(Math.random()*W,Math.random()*H*.6+40),i*250);setTimeout(()=>q('#bA2').classList.remove('hide'),1500)}
+const mg=["Pata hai, tumhe chand bohot pasand hai. Aur mujhe lagta hai chand bilkul tumhare jaisa hai 🌙","Shaant, sukoon dene wala, aur andheri raat mein bhi roshni dene wala. Bilkul meri Archu ki tarah.","Jab bhi chand dekho, yaad rakhna, kahin door koi usi chand ko dekhke tumhe yaad kar raha hai.","Chand roz poora nahi hota, par roz apni jagah par hota hai. Mai bhi har haal mein tumhare saath hoon.","Aaj raat chand ko dekhna, wo meri taraf se tumhe 'I love you' keh raha hoga 🤍"];let mc=0;
+q('#moon').onclick=()=>{q('#mm').textContent=mg[Math.min(mc,4)];mc++;boom(innerWidth/2,innerHeight/3);if(mc>=5)q('#bM').classList.remove('hide')};
+cards('#gC',[["Janab 😎","Tumhara 'Janab' bolna sunke mera dil pighal jata hai 🫠"],["Chai ☕","Tumhare saath ki ek cup chai, duniya ki sabse mehngi coffee se bhi behtar"],["Chand 🌙","Jab bhi chand dekhta hoon, tumhari yaad aati hai"],["Hansi 😊","Tumhari hansi mera favorite music hai 🎶"],["Baatein 💬","Tumse baat karte karte din kab khatam hota hai, pata hi nahi chalta"],["Himmat 💪","Tum bohot strong ho, aur mujhe tum par bohot garv hai 🥹"],["Ghar 🏡","Jahan tum ho, wahi mera ghar hai"],["Hamesha ♾️","Tum mere aaj bhi ho, kal bhi, aur hamesha"]],1,'#cC','#bC');
+const wl=["Tumhari har subah muskurahat se shuru ho ☀️","Tumhe wo sab mile jo tum dil se chahti ho 🎁","Tumhari sehat hamesha achhi rahe 🌿","Har goal mein tumhe kamyabi mile 🎯","Tumhare ghar mein hamesha khushiyan rahein 🏠","Tumhari raatein chain ki neend aur meethe sapnon wali hon 🌙","Tum jahan bhi jao, log tumse pyaar karein 💖","Tumhe kabhi pyaar ya khushi ki kami na ho 💫","Tumhari har dua kabool ho 🤲","Tum hamesha confident aur khush raho 👑","Hamare saath ke har din mein ek nayi khushi ho 💞","Lakshmi Maa tumhe sukh aur samriddhi dein 🪷"];let wc=0;
+function jar(){q('#wj').textContent=wl[wc%12];q('#cW').textContent=Math.min(++wc,6);boom(innerWidth/2,innerHeight*.35);if(wc>=6)q('#bW').classList.remove('hide')}
+const w2=["Tumhe har mod par sukoon mile 🕊️","Tumhara saath hamesha rahe, aur mera haath bhi 🤝","Har andhera tumhari roshni se haar jaye ✨","Tumhari hansi kabhi na thame 😄","Tumhare saare sapne sach hon 🌈","Tumhari chai hamesha garam aur din hamesha pyaara ☕","Aur tumhe milta rahe mera poora pyaar ❤️"];let l2=0;
+w2.forEach(w=>{const d=document.createElement('div');d.className='diya';d.innerHTML='<div class="flame"></div>';d.onclick=()=>{if(d.classList.contains('lit'))return;d.classList.add('lit');q('#pD').textContent=w;const r=d.getBoundingClientRect();boom(r.left+27,r.top);if(++l2==7)setTimeout(()=>{q('#pD').textContent='Ab poora aasman roshan hai, meri Archu ❤️';q('#bD').classList.remove('hide');burst()},1400)};q('#lamps2').appendChild(d)});
+function dream(){document.querySelectorAll('.dr').forEach((p,i)=>setTimeout(()=>p.classList.add('in'),i*1300+400));setTimeout(()=>q('#bR').classList.remove('hide'),7200)}
+function chat(){document.querySelectorAll('.bb').forEach((p,i)=>{p.classList.remove('in');setTimeout(()=>p.classList.add('in'),i*1800+500)})}
+addEventListener('pointermove',e=>{for(let i=0;i<2;i++)fw.push({x:e.clientX,y:e.clientY,vx:(Math.random()-.5)*1.2,vy:Math.random()*.8,l:.55,h:Math.random()*60+10})});
+{const m=document.createElement('div');m.id='mand';let s='<svg viewBox="-100 -100 200 200" fill="none" stroke="#ffc857" stroke-width=".35">';[12,18,24].forEach((n,r)=>{const rad=[28,52,76][r];for(let i=0;i<n;i++)s+=`<ellipse cx="0" cy="${-rad}" rx="${6+r*2}" ry="${14+r*3}" transform="rotate(${i*360/n})"/>`});s+='<circle r="90"/><circle r="96" stroke-dasharray="1 3"/></svg>';m.innerHTML=s;document.body.prepend(m);
+const t=document.createElement('div');t.id='toran';for(let i=0;i<9;i++){t.innerHTML+=`<div class="hg" style="animation-delay:${-i*.4}s"><i style="height:${14+(i%3)*14}px"></i><b style="background:${i%2?'#ffb300':'#ff7a1a'}"></b></div>`}document.body.appendChild(t)}
+</script>
+</body>
+</html>
